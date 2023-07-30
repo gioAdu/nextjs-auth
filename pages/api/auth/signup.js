@@ -9,20 +9,19 @@ async function handler(req, res) {
   const usersCollection = client.db().collection('users')
 
   if (req.method === 'POST') {
-    await createUser(req, res, usersCollection)
+    return await createUser(req, res, usersCollection)
   } else if (req.method === 'PATCH') {
-    await updateUser(req, res, usersCollection)
+    return await updateUser(req, res, usersCollection)
   }
 
+  client.close()
   res.status(302).setHeader('Location', '/404')
   res.end()
-  client.close()
 }
 
 async function createUser(req, res, usersCollection) {
   const data = req.body
   const { email, password } = data
-  console.log(req.body)
   if (
     !email ||
     !email.includes('@') ||
