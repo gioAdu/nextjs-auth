@@ -14,6 +14,7 @@ function ProfileForm() {
       console.log(response)
       newPasswordRef.current.value = ''
       oldPassword.current.value = ''
+      return
     } catch (error) {
       console.error(error.message)
     }
