@@ -12,11 +12,11 @@ function ProfileForm() {
     try {
       const response = await updatePassword(oldPassword, newPassword)
       console.log(response)
+      newPasswordRef.current.value = ''
+      oldPasswordRef.current.value = ''
     } catch (error) {
       console.error(error.message)
     }
-    newPasswordRef.current.value = ''
-    oldPassword.current.value = ''
   }
   return (
     <form className={classes.form} onSubmit={submitHandler}>
